@@ -3,13 +3,16 @@
 
 # Run image
 # docker run -d -p 3000:3000 flowise
+FROM node:18-alpine
+ENV NODE_ENV=production
+
 MAINTAINER ypoint
 
 # Create app directory
 RUN mkdir -p /opt/app
 WORKDIR /opt/app
 COPY . ./
-FROM node:18-alpine
+
 RUN apk add --update libc6-compat python3 make g++
 # needed for pdfjs-dist
 RUN apk add --no-cache build-base cairo-dev pango-dev
