@@ -3,7 +3,12 @@
 
 # Run image
 # docker run -d -p 3000:3000 flowise
+MAINTAINER ypoint
 
+# Create app directory
+RUN mkdir -p /opt/app
+WORKDIR /opt/app
+COPY . ./
 FROM node:18-alpine
 RUN apk add --update libc6-compat python3 make g++
 # needed for pdfjs-dist
@@ -31,6 +36,6 @@ COPY . .
 
 RUN yarn build
 
-EXPOSE 3000
+EXPOSE 5422
 
 CMD [ "yarn", "start" ]
